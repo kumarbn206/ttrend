@@ -5,6 +5,7 @@ pipeline {
         }
     }
 
+
 environment {
     PATH = "/opt/apache-maven-3.9.2/bin:$PATH"
 }
@@ -13,6 +14,18 @@ environment {
             steps{
                 sh 'mvn clean deploy'
             }
+        }
+    } 
+
+    stages("SonarQube Analysis"){
+        environment {
+            scannerHome = tool 'sonarScanner'
+        }
+        steps
+        {
+           withSonarQubeEnv('sonarqube-server'){
+            sh '${scannerHome}/bin/sonar-scanner'
+           }
         }
     }
 }
