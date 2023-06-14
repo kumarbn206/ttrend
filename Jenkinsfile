@@ -10,14 +10,16 @@ environment {
     PATH = "/opt/apache-maven-3.9.2/bin:$PATH"
 }
     stages {
+
         stage('build the code'){
             steps{
                 sh 'mvn clean deploy'
             }
         }
-    } 
 
-    stages("SonarQube Analysis"){
+
+
+         stage("SonarQube Analysis"){
         environment {
             scannerHome = tool 'sonarScanner'
         }
@@ -28,4 +30,9 @@ environment {
            }
         }
     }
+
+    
+    } 
+
+   
 }
