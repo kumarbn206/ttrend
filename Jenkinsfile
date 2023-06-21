@@ -61,6 +61,7 @@ environment {
 
 
 
+
      stage("Jar Publish") {
         steps {
             script {
@@ -96,6 +97,7 @@ environment {
         }
       }
     }     
+
 
 
     stage (" Docker Publish "){
